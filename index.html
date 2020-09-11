@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Box Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="blackbox/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+</head>
+<body>
+        <!-- Game Title -->
+        <div class="container mt-4">
+            <h1>Black Box Game</h1>
+        </div>
+    
+        <!-- Game Console -->
+        <!-- Contains the score display, new game button, and control for # of atoms -->
+        <div class="container d-flex align-items-center justify-content-around mt-4 mb-4">
+            <div class="row align-items-start justify-items-around">
+                <label for="num-of-atoms" class="col-3"># of Atoms</label>
+                <div class="col-3">
+                    <input type="number" class="form-control" id="num-of-atoms" min="1" max="9" value="4">
+                </div>
+                <div class="col-2">
+                    <p>Score: <span id="score"></span></p>
+                </div>
+                <div class="col-4">
+                    <button id="reset" class="btn btn-outline-primary">NEW GAME</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Board -->
+        <!-- Contains nested div elements to create the 10x10 grid. -->
+        <div id="gameBoard" class="container">
+            <!-- Row 1 -->
+            <div class="row no-gutters">
+                <div class="col small-margin"><div class="d-none square"></div></div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin"><div class="d-none square"></div></div>
+            </div>
+            <!-- Row 2 -->
+            <div class="row no-gutters">
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- Row 3 -->
+            <div class="row no-gutters">
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>            
+            </div>
+            <!-- Row 4 -->
+            <div class="row no-gutters">
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>                
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>            
+            </div>
+            <!-- Row 5 -->
+            <div class="row no-gutters">
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>                
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>            
+            </div>
+            <!-- Row 6 -->
+            <div class="row no-gutters">
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- Row 7 -->
+            <div class="row no-gutters">
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- Row 8 -->
+            <div class="row no-gutters">
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- Row 9 -->
+            <div class="row no-gutters">
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square atom-square d-flex">
+                        <span class="atom-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#atom-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- Row 10 -->
+            <div class="row no-gutters">
+                <div class="col small-margin"><div class="d-none square"></div></div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin">
+                    <div class="square border-square d-flex">
+                        <span class="ray-icon d-none justify-content-center align-items-center">
+                            <svg width="90%" height="90%"><use xlink:href="#ray-icon"></use></svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="col small-margin"><div class="d-none square"></div></div>
+            </div>
+        </div>
+
+        <!-- Contains the display to make visible when the game is over -->
+        <div id="gameOver" class="container mt-5 d-none">
+            <h1>GAME OVER</h1>
+        </div>
+
+        <!-- Credits for the creators of the icons used in the game display -->
+        <div class="container mt-4">
+            <h6 class="">Atom icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></h6>
+            <h6>Ray gun icon made by <a href="https://www.flaticon.com/free-icon/laser-gun_2909515" title="Icongeek26">Icongeek26</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></h6>
+        </div>
+
+        <!-- Contains the svg's for the atom and ray icons -->
+        <div class="container d-flex">
+            <div class="d-none">
+                <svg height="512pt" width="512pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <symbol id="atom-icon" viewBox="-28 0 512 512">
+                        <path d="m449.023438 383.5c-32.398438 56.101562-141.597657 25.800781-220.800782-9.902344-20.097656-9-38.101562-18.296875-52.5-26.699218-49.796875-28.800782-92.699218-61.800782-124.796875-96l22.199219-20.398438c29.398438 31.5 71.097656 63.601562 117.597656 90.597656 12.601563 7.203125 25.203125 13.800782 37.5 19.800782 96.300782 47.101562 179.101563 54.601562 195 27.601562 27.300782-47.703125-102.898437-145.800781-157.5-177.601562-12.597656-7.199219-25.199218-13.800782-37.5-19.800782-96.300781-47.097656-179.398437-54.597656-195-27.597656-5.097656 9.300781-3 24 6.601563 42l-26.699219 14.101562c-18.300781-35.101562-13.1992188-58.203124-5.699219-71.101562 28.796875-49.800781 126.597657-33.601562 220.796875 9.601562 17.703125 8.097657 35.402344 17.097657 52.5 26.996094 71.402344 41.101563 209.101563 147.601563 168.300782 218.402344zm0 0" fill="#ff637b"/>
+                        <path d="m449.023438 383.5c-32.398438 56.101562-141.597657 25.800781-220.800782-9.902344v-32.699218c96.300782 47.101562 179.101563 54.601562 195 27.601562 27.300782-47.703125-102.898437-145.800781-157.5-177.601562-12.597656-7.199219-25.199218-13.800782-37.5-19.800782v-32.996094c17.703125 8.097657 35.402344 17.097657 52.5 26.996094 71.402344 41.101563 209.101563 147.601563 168.300782 218.402344zm0 0" fill="#e63950"/>
+                        <path d="m22.726562 256.9375h-.03125c-21.472656-12.421875-28.855468-40.003906-16.449218-61.476562 12.464844-21.585938 39.96875-28.871094 61.480468-16.46875 21.511719 12.441406 28.890626 39.914062 16.464844 61.46875-12.398437 21.4375-39.957031 28.882812-61.464844 16.476562zm0 0" fill="#ff637b"/>
+                        <path d="m283.722656 403.300781c12.601563-41.398437 19.5-93.601562 19.5-147.300781 0-128.699219-39.597656-226-75-226-35.398437 0-75 97.300781-75 226s39.601563 226 75 226c10.5 0 22.5-9.300781 33.300782-26.398438l25.199218 15.898438c-21 33.601562-43.5 40.5-58.5 40.5-68.101562 0-105-132.398438-105-256s36.898438-256 105-256c68.101563 0 105 132.398438 105 256 0 57.300781-7.199218 111.300781-21 156zm0 0" fill="#97e9d7"/><g fill="#6cb">
+                        <path d="m261.523438 455.601562 25.199218 15.898438c-21 33.601562-43.5 40.5-58.5 40.5v-30c10.5 0 22.5-9.300781 33.300782-26.398438zm0 0"/>
+                        <path d="m333.222656 256c0 57.300781-7.199218 111.300781-21 156l-28.5-8.699219c12.601563-41.398437 19.5-93.601562 19.5-147.300781 0-128.699219-39.597656-226-75-226v-30c68.101563 0 105 132.398438 105 256zm0 0"/>
+                        <path d="m288.222656 482c-24.8125 0-45-21.1875-45-46s20.1875-45 45-45c24.816406 0 45 20.1875 45 45s-20.183594 46-45 46zm0 0"/></g>
+                        <path d="m280.722656 346.902344c-14.398437 8.398437-32.699218 17.699218-52.5 26.699218-79.5 35.699219-188.699218 65.699219-220.800781 9.898438-40.796875-70.496094 96.601563-177 168.300781-218.398438 17.703125-10.199218 35.101563-19.199218 52.5-27.300781 32.101563-14.699219 63.601563-25.800781 93-32.699219l6.902344 29.398438c-30.902344 6.898438-65.402344 19.800781-99.902344 36.597656-12.597656 6-25.199218 12.601563-37.5 19.800782-58.5 33.902343-183.898437 131.699218-157.5 177.601562 15.902344 27 98.699219 19.5 195-27.597656 12.300782-6 24.902344-12.601563 37.5-19.800782 58.5-33.902343 183.902344-131.699218 157.5-177.601562-5.398437-9.300781-19.5-14.699219-39.597656-15.601562l1.199219-30c39.300781 1.800781 56.699219 17.703124 64.199219 30.601562 40.800781 70.5-96.601563 177-168.300782 218.402344zm0 0" fill="#ffd396"/>
+                        <path d="m328.125 134.5c-30.902344 6.898438-65.402344 19.800781-99.902344 36.597656v-33.296875c32.101563-14.703125 63.601563-25.800781 93-32.703125zm0 0" fill="#ffb64c"/>
+                        <path d="m280.722656 346.902344c-14.398437 8.398437-32.699218 17.699218-52.5 26.699218v-32.699218c12.300782-6 24.902344-12.601563 37.5-19.800782 58.5-33.902343 183.902344-131.699218 157.5-177.601562-5.398437-9.300781-19.5-14.699219-39.597656-15.601562l1.199219-30c39.300781 1.800781 56.699219 17.703124 64.199219 30.601562 40.800781 70.5-96.601563 177-168.300782 218.402344zm0 0" fill="#ffb64c"/>
+                        <path d="m315.132812 136.558594c-12.394531-21.519532-4.996093-49.089844 16.476563-61.496094 21.488281-12.390625 49.011719-5.101562 61.46875 16.496094 12.390625 21.429687 5.140625 48.96875-16.46875 61.449218-21.488281 12.394532-49.046875 5.023438-61.476563-16.449218zm0 0" fill="#ffb64c"/>
+                        <path d="m273.222656 256c0 24.902344-20.097656 45-45 45-24.898437 0-45-20.097656-45-45s20.101563-45 45-45c24.902344 0 45 20.097656 45 45zm0 0" fill="#725d57"/><path d="m228.222656 301v-90c24.902344 0 45 20.097656 45 45s-20.097656 45-45 45zm0 0" fill="#53433f"/>
+                    </symbol>
+                </svg>
+                <svg height="512" width="512" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <symbol id="ray-icon" viewBox="0 0 512 512">
+                        <path d="m380.31 111.841 17.18-11.915 13.759 19.839a5 5 0 1 0 8.217-5.7l-13.759-19.838 11.949-8.288 10.29 14.837a5 5 0 0 0 8.217-5.7l-10.29-14.836 11.95-8.287 6.82 9.833a5 5 0 1 0 8.217-5.7l-6.82-9.833 7.817-5.421a5 5 0 0 0 -5.7-8.217l-7.816 5.421-6.382-9.2a5 5 0 0 0 -8.217 5.7l6.382 9.2-11.949 8.287-9.853-14.206a5 5 0 0 0 -8.217 5.7l9.853 14.206-11.95 8.288-13.323-19.211a5 5 0 1 0 -8.216 5.7l13.322 19.209-17.18 11.915z"/>
+                        <path d="m176.256 319.208 7.396 27.175 43.865-30.422-8.039-29.535z"/>
+                        <path d="m102.983 311.311a14.512 14.512 0 0 0 11.062-2.637l63.393-46.562-14.226-20.512-65.824 43.057a14.619 14.619 0 0 0 5.595 26.654z"/>
+                        <path d="m284.53 268.987a27.088 27.088 0 0 0 -4.426-20.4l-3.7-5.339-22.765 17.265 17.943 3.247a5 5 0 1 1 -1.78 9.84l-21.361-3.865 7.909 28.513 16.891-11.715a27.094 27.094 0 0 0 11.289-17.546z"/>
+                        <path d="m246.491 385.678-7.243-26.613-43.864 30.422 7.243 26.613z"/>
+                        <path d="m186.438 356.62 6.159 22.63 43.865-30.422-6.159-22.63z"/>
+                        <path d="m173.762 181.951-14.705-21.2-60.229 41.769a30.188 30.188 0 0 0 -11.491 34.08z"/>
+                        <path d="m272.757 394.831-34.1-122.95-10.586 8.029 29 106.55a5 5 0 0 1 -1.975 5.422l-52.586 36.468a5 5 0 0 1 -7.674-2.8l-27.171-99.831-10.49 7.956 32.872 118.525z"/>
+                        <path d="m391.234 136.38-35.341-50.956-25.325 12.524 40.06 57.762z"/>
+                        <path d="m356.373 152.704-27.985-40.351-24.474 11.984 32.658 47.09z"/>
+                        <path d="m98.578 345.992a50.112 50.112 0 0 0 38.46-9.59l197.762-149.99-6.279-9.053-39.87 27.652a5 5 0 1 1 -5.7-8.216l39.87-27.653-5.944-8.57-59.855 41.512a5 5 0 1 1 -5.7-8.217l59.855-41.512-5.944-8.571-39.87 27.652a5 5 0 1 1 -5.7-8.217l39.87-27.652-10.277-14.817-209.786 132.659a50.544 50.544 0 0 0 19.108 92.583zm88.287-124.733a22.164 22.164 0 0 1 40.055-8.653 22.227 22.227 0 0 1 -5.54 30.9 21.994 21.994 0 0 1 -12.574 3.934 22.273 22.273 0 0 1 -21.941-26.185zm-105.639 70.921a24.428 24.428 0 0 1 10.688-15.892l69.9-45.72a5 5 0 0 1 6.845 1.335l19.772 28.509a5 5 0 0 1 -1.148 6.88l-67.316 49.442a24.4 24.4 0 0 1 -14.509 4.784 24.979 24.979 0 0 1 -4.119-.344 24.618 24.618 0 0 1 -20.11-28.994z"/>
+                        <path d="m215.681 235.293a12.258 12.258 0 0 0 -7.067-22.273 12.12 12.12 0 0 0 -11.9 10 12.252 12.252 0 0 0 18.972 12.274z"/>
+                        <path d="m151.923 422.905-13.623-49.105a5 5 0 0 0 -9.636 2.673l13.62 49.106a5 5 0 0 0 9.636-2.673z"/>
+                        <path d="m152.293 461.652a5 5 0 0 0 9.635-2.673l-4.812-17.35a5 5 0 1 0 -9.636 2.672z"/>
+                    </symbol>
+                </svg>
+            </div>
+        </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="blackbox/blackbox.js" type="text/javascript"></script>
+</body>
+</html>

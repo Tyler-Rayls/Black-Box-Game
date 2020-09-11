@@ -1,0 +1,55 @@
+body {
+    background-color: #E5E7E9;
+    font-family: 'Alata', sans-serif;
+    text-transform: uppercase;
+}
+
+.square {
+    padding-bottom: 100%;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.square:hover {
+    background-color: #85929E !important;
+}
+
+.border-square {
+    background-color: #BDC3C7;
+}
+
+.atom-square {
+    background-color: #CACFD2;
+}
+
+.small-margin {
+    margin: .5px;
+}
+
+#gameBoard {
+    max-width: 500px;
+}
+
+.container {
+    text-align: center;
+}
+
+h1, h2 {
+    color:black;
+}
+
+h6 {
+    font-size: .6rem;
+}
+
+.ray-icon {
+    position: absolute;
+    height: 100%;
+    z-index: 2;
+}
+
+.atom-icon {
+    position: absolute;
+    height: 100%;
+    z-index: 2;
+}
