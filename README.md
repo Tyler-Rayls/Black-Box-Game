@@ -1,6 +1,8 @@
 # Black-Box-Game
 A html/css/javascript web app representation of the the abstract board game Black Box.
 
+You can play it here: https://rayls.io/blackbox/
+
 A brief overview of the history and rules of the game can be found here:  https://en.wikipedia.org/wiki/Black_Box_(game)
 
 The wikipedia page includes images of how the ray interacts with atoms on the board. These images are very helpful in understanding how to play the game.
