@@ -1,6 +1,8 @@
 # Black-Box-Game
 A web app representation of the the abstract board game Black Box.
 
+![](black-box.gif)
+
 ## About the Project
 I originally created this game in Python for my Intro to Computer Science II course. In between terms, I learned web development and decided to recreate the game as a web app to give it a GUI. Since creating this project, I've furthered my Javascript knowledge in a formal classroom and outside of it, so I'm sure there are some design choices I would change. 
 
